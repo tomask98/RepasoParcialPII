@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace ModeloParcial.Entidades
 {
@@ -27,6 +29,17 @@ namespace ModeloParcial.Entidades
         public void quitarDetalle(int posicion)
         {
             LstDetalle.RemoveAt(posicion);
+        }
+
+        public int RestarStock()
+        {
+            int stock = 0;
+                foreach(DetalleOrden d in LstDetalle)
+            {
+                stock = (int)( d.Material.Stock-d.Cantidad);
+            }
+
+                return stock;
         }
 
 

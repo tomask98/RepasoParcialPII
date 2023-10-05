@@ -9,6 +9,7 @@ namespace ModeloParcial.Datos.Interfaz
 {
     public interface IOrdenDao
     {
+        bool crear(OrdenRetiro oOrdenRetiro);
         List<Material> obtenerMateriales();
     }
 }

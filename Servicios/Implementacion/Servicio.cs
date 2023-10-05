@@ -17,6 +17,12 @@ namespace ModeloParcial.Servicios.Implementacion
         {
             Dao = new OrdenDao();
         }
+
+        public bool crearOrden(OrdenRetiro oOrdenRetiro)
+        {
+            return Dao.crear(oOrdenRetiro);
+        }
+
         public List<Material> TraerMaterial()
         {
             return Dao.obtenerMateriales();

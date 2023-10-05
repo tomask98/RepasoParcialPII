@@ -90,5 +90,42 @@ namespace ModeloParcial.Presentacion
 
             }
         }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtResponsable.Text))
+            {
+                MessageBox.Show("Debe ingresar un Responsable...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (dgvDetalles.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe ingresar al menos un detalle...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            grabarOrden();
+        }
+
+        private void grabarOrden()
+        {
+            nueva.Fecha = Convert.ToDateTime(dtpFecha.Value);
+            nueva.Responsable = txtResponsable.Text;
+
+            if (servicio.crearOrden(nueva))
+            {
+                MessageBox.Show("Se registró con éxito el presupuesto...", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("NO se pudo registrar el presupuesto...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

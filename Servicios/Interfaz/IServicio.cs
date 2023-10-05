@@ -9,6 +9,7 @@ namespace ModeloParcial.Servicios.Interfaz
 {
     public interface IServicio
     {
+        bool crearOrden(OrdenRetiro oOrdenRetirro);
         List<Material> TraerMaterial();
     }
 }

@@ -16,10 +16,7 @@ namespace ModeloParcial.Entidades
             Cantidad = cantidad;
         }
 
-        public int CalcularStock()
-        {
-            return (int)(Cantidad - Material.Stock);
-        }
+       
         
     }
 }
