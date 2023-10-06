@@ -29,7 +29,7 @@ namespace ModeloParcial.Datos.Implementacion
                 comando.CommandType = CommandType.StoredProcedure;
                 comando.CommandText = "SP_INSERTAR_ORDEN";
                 comando.Parameters.AddWithValue("@responsable", oOrdenRetiro.Responsable);
-                comando.Parameters.AddWithValue("@stock", oOrdenRetiro.RestarStock());
+                
 
                 SqlParameter parametro = new SqlParameter();
                 parametro.ParameterName = "@nro";
@@ -54,6 +54,15 @@ namespace ModeloParcial.Datos.Implementacion
                     cmdDetalle.Parameters.AddWithValue("@codigo",Do.Material.Codigo);
                     cmdDetalle.Parameters.AddWithValue("@cantidad",Do.Cantidad);
                     cmdDetalle.ExecuteNonQuery();
+
+                    // Llama al procedimiento SP_RESTAR_STOCK para restar el stock del material
+                    SqlCommand cmdRestarStock = new SqlCommand("SP_RESTAR_STOCK", conexion, t);
+                    cmdRestarStock.CommandType = CommandType.StoredProcedure;
+                    cmdRestarStock.Parameters.AddWithValue("@codigo", Do.Material.Codigo);
+                    cmdRestarStock.Parameters.AddWithValue("@cantidad", Do.Cantidad);
+                    cmdRestarStock.ExecuteNonQuery();
+
+                    
                     detalleNro++;
 
 

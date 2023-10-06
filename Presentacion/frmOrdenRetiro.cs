@@ -45,7 +45,7 @@ namespace ModeloParcial.Presentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if(cboMaterial.SelectedIndex== -1)
+            if (cboMaterial.SelectedIndex == -1)
             {
                 MessageBox.Show("seleccione un material", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -55,12 +55,12 @@ namespace ModeloParcial.Presentacion
                 MessageBox.Show("Indique el nombre del responsable", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            if(npCantidad.Value ==0)
+            if (npCantidad.Value == 0)
             {
                 MessageBox.Show("debe ingresar una cantidad valida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            foreach(DataGridViewRow row  in dgvDetalles.Rows)
+            foreach (DataGridViewRow row in dgvDetalles.Rows)
             {
                 if (row.Cells["ColMaterial"].Value.ToString().Equals(cboMaterial.Text))
                 {
@@ -69,11 +69,10 @@ namespace ModeloParcial.Presentacion
                 }
             }
 
-            Material m = (Material)cboMaterial.SelectedItem;
-
-            int cant = Convert.ToInt32(npCantidad.Value);
-            DetalleOrden detalle = new DetalleOrden(m, cant);
-            nueva.AgregarDetalle(detalle);
+            Material m = (Material)cboMaterial.SelectedItem; //el material elegido
+            int cant = Convert.ToInt32(npCantidad.Value); //la cantidad
+            DetalleOrden detalle = new DetalleOrden(m, cant); // nuevo detalle de orden
+            nueva.AgregarDetalle(detalle); // agrega
 
             dgvDetalles.Rows.Add(new object[] { m.Codigo, m.Nombre, m.Stock,cant, "Quitar" });
 

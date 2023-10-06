@@ -23,7 +23,7 @@ namespace ModeloParcial.Servicios.Implementacion
             return Dao.crear(oOrdenRetiro);
         }
 
-        public List<Material> TraerMaterial()
+        public List<Material> TraerMaterial() // para cargar el combo
         {
             return Dao.obtenerMateriales();
         }
